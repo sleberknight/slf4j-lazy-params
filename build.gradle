@@ -1,0 +1,20 @@
+group 'com.fortitudetec'
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.2'
+    testCompile group: 'org.awaitility', name: 'awaitility', version: '2.0.0'
+
+}
+

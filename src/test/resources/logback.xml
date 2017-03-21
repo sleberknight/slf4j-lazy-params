@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.fortitudetec" level="DEBUG"/>
+
+    <!--
+        NOTE:
+        A logger for this test class *must* be present and at DEBUG level for the test to work (since it
+        is testing SLF4J and specifically whether the lazy/delayed supplier executes or not.
+    -->
+    <logger name="com.fortitudetec.slf4j.Slf4jParameterSupplierTest" level="DEBUG"/>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
