@@ -2,6 +2,8 @@ package com.fortitudetec.slf4j;
 
 import java.util.function.Supplier;
 
+import static java.util.Objects.isNull;
+
 /**
  * Allows for lazy evaluation of one or more SLF4J replacement parameters in a logging statement.
  */
@@ -23,8 +25,8 @@ public class Slf4jParameterSupplier {
      *                 object to JSON
      * @return a {@link Supplier} that wraps {@code original},]
      */
-    public static Supplier<String> delayed(Supplier<String> original) {
-        return new StringSupplierWrapper(original);
+    public static Supplier<Object> delayed(Supplier<Object> original) {
+        return new ObjectSupplierWrapper(original);
     }
 
     /**
@@ -35,26 +37,27 @@ public class Slf4jParameterSupplier {
      *     LOG.debug("Flubber JSON with id {} is: {}", flubber.getId(), lazy(flubber::toJson));
      * </pre>
      */
-    public static Supplier<String> lazy(Supplier<String> original) {
+    public static Supplier<Object> lazy(Supplier<Object> original) {
         return delayed(original);
     }
 
-    private static class StringSupplierWrapper implements Supplier<String> {
+    private static class ObjectSupplierWrapper implements Supplier<Object> {
 
-        private final Supplier<String> original;
+        private final Supplier<Object> original;
 
-        private StringSupplierWrapper(Supplier<String> original) {
+        private ObjectSupplierWrapper(Supplier<Object> original) {
             this.original = original;
         }
 
         @Override
-        public String get() {
+        public Object get() {
             return original.get();
         }
 
         @Override
         public String toString() {
-            return get();
+            Object value = get();
+            return isNull(value) ? "null" : value.toString();
         }
     }
 }
