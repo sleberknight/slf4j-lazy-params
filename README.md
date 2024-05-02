@@ -1,5 +1,7 @@
 # slf4j-lazy-params
 
+**This same functionality is now available as [LazyLogParameterSupplier](https://github.com/kiwiproject/kiwi/blob/8ee850152b97ac09548ec9bae23ad445e4e02298/src/main/java/org/kiwiproject/logging/LazyLogParameterSupplier.java) in the [https://github.com/kiwiproject/kiwi](kiwi) library.**
+
 Provides lazy evaluation for SLF4J replacement parameters, for example when one or more values might be
 relatively expensive to compute such as serializing an object to JSON for DEBUG logging but not at higher levels.
 
